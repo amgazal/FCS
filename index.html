@@ -168,6 +168,12 @@
 
     .citation { display: none; }
 
+    @media (max-width: 1024px) {
+      .hero-grid {
+        background-size: auto, 28px 28px, 28px 28px;
+      }
+    }
+
     @media (max-width: 900px) {
       .floating-panel {
         margin-top: 1.5rem;
@@ -175,9 +181,23 @@
     }
 
     @media (max-width: 768px) {
+      .hero-grid {
+        background-size: auto, 22px 22px, 22px 22px;
+      }
+
       .speaker-row {
         flex-direction: column;
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section-label {
+        letter-spacing: 0.18em;
+      }
+
+      .hero-grid {
+        background-image: radial-gradient(circle at top, rgba(179, 27, 27, 0.08), transparent 34%);
       }
     }
 
@@ -190,26 +210,26 @@
 <body class="selection:bg-[#B31B1B] selection:text-white antialiased">
 
   <nav class="sticky top-0 z-50 border-b border-black/10 bg-[rgba(252,251,248,0.82)] backdrop-blur-md">
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:gap-6">
-      <div class="text-[11px] font-semibold uppercase tracking-[0.24em] text-gray-900">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:gap-6">
+      <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gray-900 sm:text-[11px]">
         Cornell University
       </div>
 
-      <div class="hidden items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-700 md:flex lg:gap-5">
+      <div class="hidden items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-700 md:flex lg:gap-5 lg:text-[11px] lg:tracking-[0.14em]">
         <a href="#overview" class="nav-link">Overview</a>
         <a href="#pillars" class="nav-link">Themes</a>
         <a href="#demos" class="nav-link">Demos</a>
         <a href="#speakers" class="nav-link">Speakers</a>
       </div>
 
-      <a href="https://cornell.campusgroups.com/Futurecivilizations/rsvp_boot?id=2304011" target="_blank" rel="noopener" class="cta-button rounded-full bg-[#B31B1B] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-red-900">
+      <a href="https://cornell.campusgroups.com/Futurecivilizations/rsvp_boot?id=2304011" target="_blank" rel="noopener" class="cta-button rounded-full bg-[#B31B1B] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-red-900 sm:px-5 sm:py-2.5 sm:text-[11px] sm:tracking-[0.2em]">
         Register
       </a>
     </div>
   </nav>
 
   <header class="hero-grid relative overflow-hidden border-b border-black/10">
-    <div class="mx-auto grid min-h-[96svh] max-w-7xl items-center px-6 pb-20 pt-28 lg:grid-cols-12 lg:gap-12">
+    <div class="mx-auto grid min-h-[96svh] max-w-7xl items-center px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:grid-cols-12 lg:gap-12">
       <div class="fade-in relative z-10 lg:col-span-8">
         <h1 class="max-w-5xl text-5xl font-extrabold leading-[0.93] tracking-[-0.055em] text-[#111111] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
           The Future Civilizations Conference
@@ -256,8 +276,8 @@
     </div>
   </header>
 
-  <section id="overview" class="border-y border-black/10 bg-white py-24">
-    <div class="mx-auto grid max-w-7xl gap-14 px-6 md:grid-cols-12 md:gap-16">
+  <section id="overview" class="border-y border-black/10 bg-white py-20 sm:py-24">
+    <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-12 md:gap-16">
       <div class="md:col-span-4">
         <p class="section-label mb-4">Conference Theme</p>
         <h2 class="text-4xl font-bold leading-tight md:text-5xl">How will the next human city look?</h2>
@@ -272,7 +292,7 @@
     </div>
   </section>
 
-  <section id="pillars" class="mx-auto max-w-7xl px-6 py-24">
+  <section id="pillars" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24">
     <div class="mb-12 flex flex-col gap-4 border-b border-black/10 pb-8 md:flex-row md:items-end md:justify-between">
       <div>
         <p class="section-label mb-4">Themes</p>
@@ -283,8 +303,8 @@
       </p>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-2">
-      <article class="academic-card rounded-[22px] p-8 md:p-10">
+    <div class="grid gap-6 md:grid-cols-2 md:gap-8">
+      <article class="academic-card rounded-[22px] p-6 sm:p-8 md:p-10">
         <span class="mb-4 block text-sm font-bold text-[#B31B1B]">01</span>
         <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Designing the Autonomous City</h3>
         <p class="font-light leading-relaxed text-gray-600">
@@ -293,7 +313,7 @@
         </p>
       </article>
 
-      <article class="academic-card rounded-[22px] p-8 md:p-10">
+      <article class="academic-card rounded-[22px] p-6 sm:p-8 md:p-10">
         <span class="mb-4 block text-sm font-bold text-[#B31B1B]">02</span>
         <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Human Psychology, Purpose, and Social Life</h3>
         <p class="font-light leading-relaxed text-gray-600">
@@ -302,7 +322,7 @@
         </p>
       </article>
 
-      <article class="academic-card rounded-[22px] p-8 md:p-10">
+      <article class="academic-card rounded-[22px] p-6 sm:p-8 md:p-10">
         <span class="mb-4 block text-sm font-bold text-[#B31B1B]">03</span>
         <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Sustainability, Agriculture, and Future Food Systems</h3>
         <p class="font-light leading-relaxed text-gray-600">
@@ -311,7 +331,7 @@
         </p>
       </article>
 
-      <article class="academic-card rounded-[22px] p-8 md:p-10">
+      <article class="academic-card rounded-[22px] p-6 sm:p-8 md:p-10">
         <span class="mb-4 block text-sm font-bold text-[#B31B1B]">04</span>
         <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Frontier Cities: Beyond Earth</h3>
         <p class="font-light leading-relaxed text-gray-600">
@@ -322,8 +342,8 @@
     </div>
   </section>
 
-  <section id="demos" class="bg-gray-950 py-28 text-white">
-    <div class="mx-auto max-w-7xl px-6">
+  <section id="demos" class="bg-gray-950 py-20 text-white sm:py-24 lg:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="mb-16 flex flex-col gap-4 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
         <div>
           <p class="section-label mb-4 text-red-400">Featured Work</p>
@@ -334,7 +354,7 @@
         </p>
       </div>
 
-      <div class="space-y-12">
+      <div class="space-y-10 sm:space-y-12">
         <a href="https://tech.cornell.edu/news/do-robots-need-clothes/" target="_blank" rel="noopener" class="demo-row group block pt-8">
           <div class="grid items-start gap-8 md:grid-cols-12">
             <div class="md:col-span-4">
@@ -398,7 +418,7 @@
     </div>
   </section>
 
-  <section id="speakers" class="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-2 lg:gap-20">
+  <section id="speakers" class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-20">
     <div>
       <p class="section-label mb-4">Speakers</p>
       <h2 class="mb-10 text-4xl font-bold md:text-5xl">Featured speakers</h2>
@@ -456,16 +476,16 @@
     </div>
   </section>
 
-  <section id="register" class="border-t border-black/10 bg-[#F7F5F1] py-28">
-    <div class="mx-auto max-w-4xl px-6 text-center">
+  <section id="register" class="border-t border-black/10 bg-[#F7F5F1] py-20 sm:py-24 lg:py-28">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
       <p class="section-label mb-4">Registration</p>
       <h2 class="text-4xl font-bold md:text-5xl">Register for the conference</h2>
       <p class="mx-auto mt-5 max-w-2xl text-base font-light leading-relaxed text-gray-600 md:text-lg">
         Complete the official registration form through CampusGroups.
       </p>
 
-      <div class="mt-12 rounded-[24px] border border-black/10 bg-white/90 p-8 shadow-[0_14px_38px_rgba(0,0,0,0.05)] md:p-10">
-        <div class="mb-8 grid gap-6 text-left md:grid-cols-3">
+      <div class="mt-12 rounded-[24px] border border-black/10 bg-white/90 p-6 shadow-[0_14px_38px_rgba(0,0,0,0.05)] sm:p-8 md:p-10">
+        <div class="mb-8 grid gap-4 text-left sm:gap-6 md:grid-cols-3">
           <div class="rounded-[18px] border border-black/8 bg-[#FCFBF8] p-5">
             <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Date</p>
             <p class="mt-2 text-base text-gray-900">April 18, 2026</p>
@@ -493,7 +513,7 @@
     </div>
   </section>
 
-  <footer class="bg-gray-950 py-16 text-sm font-light text-white">
+  <footer class="bg-gray-950 py-14 text-sm font-light text-white sm:py-16">
     <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-2">
       <div>
         <h4 class="mb-4 text-xl font-bold">Contact</h4>

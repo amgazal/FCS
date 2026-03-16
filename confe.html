@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Future Civilizations Conference | Cornell University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cornell-red: #B31B1B;
+      --paper: #F7F5F1;
+      --paper-2: #FCFBF8;
+      --ink: #111111;
+      --muted: #5F6470;
+      --line: rgba(17, 17, 17, 0.10);
+      --line-strong: rgba(17, 17, 17, 0.16);
+      --shadow: 0 14px 40px rgba(0,0,0,0.05);
+    }
+
+    body {
+      background: linear-gradient(to bottom, var(--paper-2) 0%, var(--paper) 100%);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.95s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--cornell-red);
+    }
+
+    .hero-grid {
+      background-image:
+        radial-gradient(circle at top, rgba(179, 27, 27, 0.08), transparent 28%),
+        linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
+      background-size: auto, 36px 36px, 36px 36px;
+      background-position: center, center, center;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.22s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 1px;
+      background: rgba(179, 27, 27, 0.45);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--cornell-red);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .floating-panel {
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(17,17,17,0.08);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .floating-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .academic-card {
+      border: 1px solid rgba(17,17,17,0.08);
+      background: rgba(255,255,255,0.9);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .academic-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(to right, rgba(179,27,27,0.9), rgba(179,27,27,0));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .academic-card:hover {
+      border-color: rgba(179, 27, 27, 0.32);
+      background-color: #ffffff;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+      transform: translateY(-5px);
+    }
+
+    .academic-card:hover::before {
+      opacity: 1;
+    }
+
+    .demo-row {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .demo-row:hover {
+      border-color: rgba(179,27,27,0.95);
+      transform: translateX(2px);
+    }
+
+    .speaker-row {
+      border-bottom: 1px solid var(--line);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .speaker-row:hover {
+      border-color: rgba(179,27,27,0.34);
+      transform: translateX(2px);
+    }
+
+    .cta-button {
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(179, 27, 27, 0.18);
+    }
+
+    .ghost-button:hover {
+      border-color: rgba(179, 27, 27, 0.36);
+      color: var(--cornell-red);
+    }
+
+    .citation { display: none; }
+
+    @media (max-width: 900px) {
+      .floating-panel {
+        margin-top: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .speaker-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade-in, .academic-card, .demo-row, .speaker-row, .cta-button { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#B31B1B] selection:text-white antialiased">
+
+  <nav class="sticky top-0 z-50 border-b border-black/10 bg-[rgba(252,251,248,0.82)] backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:gap-6">
+      <div class="text-[11px] font-semibold uppercase tracking-[0.24em] text-gray-900">
+        Cornell University
+      </div>
+
+      <div class="hidden items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-700 md:flex lg:gap-5">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#pillars" class="nav-link">Themes</a>
+        <a href="#demos" class="nav-link">Demos</a>
+        <a href="#speakers" class="nav-link">Speakers</a>
+      </div>
+
+      <a href="https://cornell.campusgroups.com/Futurecivilizations/rsvp_boot?id=2304011" target="_blank" rel="noopener" class="cta-button rounded-full bg-[#B31B1B] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white hover:bg-red-900">
+        Register
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero-grid relative overflow-hidden border-b border-black/10">
+    <div class="mx-auto grid min-h-[96svh] max-w-7xl items-center px-6 pb-20 pt-28 lg:grid-cols-12 lg:gap-12">
+      <div class="fade-in relative z-10 lg:col-span-8">
+        <h1 class="max-w-5xl text-5xl font-extrabold leading-[0.93] tracking-[-0.055em] text-[#111111] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          The Future Civilizations Conference
+        </h1>
+
+        <div class="mt-8 h-[4px] w-20 rounded-full bg-[#B31B1B]"></div>
+
+        <h2 class="mt-8 max-w-4xl text-2xl italic leading-[1.2] text-gray-600 md:text-[2.15rem]">
+          Designing the Next Human City in an Age of Artificial Intelligence.
+        </h2>
+
+        <p class="mt-8 max-w-3xl text-lg font-light leading-[1.85] text-gray-800 md:text-[1.15rem]">
+          Led by Cornell University, the Future Civilizations Conference brings together scholars, engineers,
+          artists, designers, and builders to examine how artificial intelligence and autonomous systems will
+          shape cities, infrastructure, social life, food systems, and future human environments.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#pillars" class="ghost-button rounded-full border border-black/12 bg-white/70 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-gray-900 transition-colors">
+            Explore Themes
+          </a>
+        </div>
+      </div>
+
+      <div class="relative z-10 mt-14 lg:col-span-4 lg:mt-0">
+        <div class="floating-panel rounded-[24px] p-6 md:p-7 lg:ml-auto lg:max-w-[360px]">
+          <p class="section-label">At a glance</p>
+          <div class="mt-5 space-y-5 text-sm text-gray-700">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500">Focus</p>
+              <p class="mt-1 leading-relaxed">AI, autonomous systems, urban futures, human identity, sustainability, and off-world civilization.</p>
+            </div>
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500">Format</p>
+              <p class="mt-1 leading-relaxed">Speakers, live demonstrations, interdisciplinary exchange, and conference-wide public conversation.</p>
+            </div>
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500">Audience</p>
+              <p class="mt-1 leading-relaxed">Students, scholars, designers, technologists, researchers, artists, and builders.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="overview" class="border-y border-black/10 bg-white py-24">
+    <div class="mx-auto grid max-w-7xl gap-14 px-6 md:grid-cols-12 md:gap-16">
+      <div class="md:col-span-4">
+        <p class="section-label mb-4">Conference Theme</p>
+        <h2 class="text-4xl font-bold leading-tight md:text-5xl">How will the next human city look?</h2>
+      </div>
+      <div class="md:col-span-8">
+        <p class="max-w-4xl text-xl font-light leading-relaxed text-gray-700">
+          Using the next human city as its central lens, the conference examines how emerging technologies will
+          reshape architecture, infrastructure, social systems, food production, and future settlement beyond Earth.
+          The program is organized around four thematic pillars.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pillars" class="mx-auto max-w-7xl px-6 py-24">
+    <div class="mb-12 flex flex-col gap-4 border-b border-black/10 pb-8 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="section-label mb-4">Themes</p>
+        <h2 class="text-4xl font-bold md:text-5xl">Thematic pillars</h2>
+      </div>
+      <p class="max-w-2xl text-base font-light leading-relaxed text-gray-600 md:text-lg">
+        Structured to feel rigorous, expansive, and alive — ideas you can debate, systems you can see, futures you can interrogate.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <article class="academic-card rounded-[22px] p-8 md:p-10">
+        <span class="mb-4 block text-sm font-bold text-[#B31B1B]">01</span>
+        <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Designing the Autonomous City</h3>
+        <p class="font-light leading-relaxed text-gray-600">
+          How AI, robotics, and autonomous systems will transform the built environment, including architecture,
+          mobility, urban planning, infrastructure, and the experience of public space.
+        </p>
+      </article>
+
+      <article class="academic-card rounded-[22px] p-8 md:p-10">
+        <span class="mb-4 block text-sm font-bold text-[#B31B1B]">02</span>
+        <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Human Psychology, Purpose, and Social Life</h3>
+        <p class="font-light leading-relaxed text-gray-600">
+          How identity, belonging, creativity, and emotional life may evolve when everyday life is deeply integrated
+          with autonomous agents, from caregiving robots to AI therapists to automated social systems.
+        </p>
+      </article>
+
+      <article class="academic-card rounded-[22px] p-8 md:p-10">
+        <span class="mb-4 block text-sm font-bold text-[#B31B1B]">03</span>
+        <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Sustainability, Agriculture, and Future Food Systems</h3>
+        <p class="font-light leading-relaxed text-gray-600">
+          How AI-driven agriculture, resource distribution, food systems, and environmental technologies will sustain
+          future cities and human populations.
+        </p>
+      </article>
+
+      <article class="academic-card rounded-[22px] p-8 md:p-10">
+        <span class="mb-4 block text-sm font-bold text-[#B31B1B]">04</span>
+        <h3 class="mb-4 text-2xl font-bold leading-tight md:text-[1.95rem]">Frontier Cities: Beyond Earth</h3>
+        <p class="font-light leading-relaxed text-gray-600">
+          A speculative but serious exploration of how these principles extend to off-world environments such as Mars,
+          and how AI may become essential to building entirely new forms of settlement.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="demos" class="bg-gray-950 py-28 text-white">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-16 flex flex-col gap-4 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="section-label mb-4 text-red-400">Featured Work</p>
+          <h2 class="text-4xl font-bold md:text-5xl">Live demonstrations</h2>
+        </div>
+        <p class="max-w-2xl text-base font-light leading-relaxed text-gray-400 md:text-lg">
+          Research demonstrations exploring robotics, design, agriculture, and human-machine interaction.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <a href="https://tech.cornell.edu/news/do-robots-need-clothes/" target="_blank" rel="noopener" class="demo-row group block pt-8">
+          <div class="grid items-start gap-8 md:grid-cols-12">
+            <div class="md:col-span-4">
+              <h3 class="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#B31B1B]">Fashion Robotics</h3>
+              <p class="font-mono text-sm text-gray-400">Maia Hirsch</p>
+            </div>
+            <div class="md:col-span-8">
+              <p class="mb-4 font-light leading-relaxed text-gray-300">
+                Fashion Robotics explores the fusion of wearable technology, soft robotics, and fashion to create garments
+                that respond to the body, environment, and social interaction.
+              </p>
+              <p class="text-sm font-light leading-relaxed text-gray-400">
+                The lab will present an exhibition of interactive robotic dresses, demonstrating how clothing can become
+                an expressive, adaptive interface between humans and machines.
+              </p>
+              <span class="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] group-hover:underline">View Lab Research →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://INSERT_AR_LAB_LINK_HERE" target="_blank" rel="noopener" class="demo-row group block pt-8">
+          <div class="grid items-start gap-8 md:grid-cols-12">
+            <div class="md:col-span-4">
+              <h3 class="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#B31B1B]">Automation and Robotics Laboratory</h3>
+              <p class="font-mono text-sm text-gray-400">Lirong Xiang</p>
+            </div>
+            <div class="md:col-span-8">
+              <p class="mb-4 font-light leading-relaxed text-gray-300">
+                The Automation and Robotics Laboratory develops AI-driven robotic systems for sustainable agriculture,
+                integrating robotics, computer vision, and machine learning.
+              </p>
+              <p class="text-sm font-light leading-relaxed text-gray-400">
+                The lab will present Spyder Bot, a legged agricultural robot designed to navigate complex terrain and
+                perform autonomous sensing and monitoring for future food systems.
+              </p>
+              <span class="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] group-hover:underline">View Lab Research →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://human.cornell.edu/news-profiles/leigh-explores-ethics-and-product-design-liminal-contexts" target="_blank" rel="noopener" class="demo-row group block pt-8">
+          <div class="grid items-start gap-8 md:grid-cols-12">
+            <div class="md:col-span-4">
+              <h3 class="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#B31B1B]">Machine Poetics</h3>
+              <p class="font-mono text-sm text-gray-400">Sangh Leigh</p>
+            </div>
+            <div class="md:col-span-8">
+              <p class="mb-4 font-light leading-relaxed text-gray-300">
+                Machine Poetics investigates technology as an expressive and critical medium, exploring embodied human-machine
+                relationships through art, design, and robotics.
+              </p>
+              <p class="text-sm font-light leading-relaxed text-gray-400">
+                The group will present an experiential work that invites participants to encounter unfamiliar machine intelligence
+                and reflect on intimacy, alienness, and coexistence with AI.
+              </p>
+              <span class="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] group-hover:underline">View Lab Research →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="speakers" class="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-2 lg:gap-20">
+    <div>
+      <p class="section-label mb-4">Speakers</p>
+      <h2 class="mb-10 text-4xl font-bold md:text-5xl">Featured speakers</h2>
+      <div class="space-y-4 text-xl font-light text-gray-800">
+        <div class="speaker-row flex items-center justify-between gap-4 pb-4">
+          <span>Manoj Karkee</span>
+          <a href="https://agrobotics.cals.cornell.edu/" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] transition-colors hover:text-black">View Research ↗</a>
+        </div>
+        <div class="speaker-row flex items-center justify-between gap-4 pb-4">
+          <span>Rosa Santomartino</span>
+          <a href="https://blogs.cornell.edu/rosa-santomartino/" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] transition-colors hover:text-black">View Research ↗</a>
+        </div>
+        <div class="speaker-row flex items-center justify-between gap-4 pb-4">
+          <span>JoAnn Difede</span>
+          <a href="https://vivo.weill.cornell.edu/display/cwid-jdifede" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] transition-colors hover:text-black">View Research ↗</a>
+        </div>
+        <div class="speaker-row flex items-center justify-between gap-4 pb-4">
+          <span>Shane Henderson</span>
+          <a href="https://people.orie.cornell.edu/shane/research.html" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] transition-colors hover:text-black">View Research ↗</a>
+        </div>
+        <div class="speaker-row flex items-center justify-between gap-4 pb-4">
+          <span>James Burk</span>
+          <a href="https://REPLACE_WITH_LINK" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B31B1B] transition-colors hover:text-black">View Research ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label mb-4">Leadership & Team</p>
+      <h2 class="mb-10 text-4xl font-bold md:text-5xl">Organizing team</h2>
+
+      <div class="mb-8 rounded-[20px] border border-black/8 bg-white/80 p-6 shadow-[0_8px_28px_rgba(0,0,0,0.03)]">
+        <h4 class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">Founder & Director</h4>
+        <p class="text-2xl font-medium text-gray-900">Daniyal Virk</p>
+        <p class="mt-2 text-sm text-gray-600">Conference founder and director.</p>
+      </div>
+
+      <div class="mb-10 rounded-[20px] border border-black/8 bg-white/80 p-6 shadow-[0_8px_28px_rgba(0,0,0,0.03)]">
+        <h4 class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">Faculty Advisor</h4>
+        <p class="text-2xl font-medium text-gray-900">Sangh Leigh</p>
+        <p class="mt-2 text-sm text-gray-600">Faculty advisor.</p>
+      </div>
+
+      <div>
+        <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">Team Members</h4>
+        <div class="grid grid-cols-2 gap-4 text-gray-700 sm:grid-cols-3">
+          <span>Jonathan Segal</span>
+          <span>Angela Xu</span>
+          <span>Ahmed Arif</span>
+          <span>Abdallah Gazal</span>
+          <span>Wasif Atcha</span>
+          <span>Tanay Naik</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" class="border-t border-black/10 bg-[#F7F5F1] py-28">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <p class="section-label mb-4">Registration</p>
+      <h2 class="text-4xl font-bold md:text-5xl">Register for the conference</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-base font-light leading-relaxed text-gray-600 md:text-lg">
+        Complete the official registration form through CampusGroups.
+      </p>
+
+      <div class="mt-12 rounded-[24px] border border-black/10 bg-white/90 p-8 shadow-[0_14px_38px_rgba(0,0,0,0.05)] md:p-10">
+        <div class="mb-8 grid gap-6 text-left md:grid-cols-3">
+          <div class="rounded-[18px] border border-black/8 bg-[#FCFBF8] p-5">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Date</p>
+            <p class="mt-2 text-base text-gray-900">April 18, 2026</p>
+          </div>
+          <div class="rounded-[18px] border border-black/8 bg-[#FCFBF8] p-5">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Location</p>
+            <p class="mt-2 text-base text-gray-900">Cornell University</p>
+          </div>
+          <div class="rounded-[18px] border border-black/8 bg-[#FCFBF8] p-5">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Registration</p>
+            <p class="mt-2 text-base text-gray-900">CampusGroups</p>
+          </div>
+        </div>
+
+        <p class="mx-auto max-w-2xl text-base font-light leading-relaxed text-gray-600">
+          Register directly through CampusGroups using the official conference RSVP page.
+        </p>
+
+        <div class="mt-8">
+          <a href="https://cornell.campusgroups.com/Futurecivilizations/rsvp_boot?id=2304011" target="_blank" rel="noopener" class="break-all text-sm font-semibold text-[#B31B1B] underline underline-offset-4 hover:text-black md:break-normal">
+            https://cornell.campusgroups.com/Futurecivilizations/rsvp_boot?id=2304011
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-950 py-16 text-sm font-light text-white">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-2">
+      <div>
+        <h4 class="mb-4 text-xl font-bold">Contact</h4>
+        <p class="mb-4 max-w-xl text-gray-400">
+          For partnerships, press inquiries, academic collaboration, or participation opportunities,
+          contact the organizing team.
+        </p>
+        <a href="mailto:cornellfcs@gmail.com" class="font-semibold text-[#B31B1B] transition-colors hover:text-white">
+          cornellfcs@gmail.com
+        </a>
+      </div>
+      <div class="flex flex-col justify-end md:text-right">
+        <p class="text-gray-500">&copy; 2026 The Future Civilizations Conference. All rights reserved.</p>
+        <p class="mt-2 text-xs text-gray-600">Ithaca, New York, United States</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
